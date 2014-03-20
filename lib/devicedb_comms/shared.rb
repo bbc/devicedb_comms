@@ -19,7 +19,7 @@ module DeviceDBComms
       parse_response @http.request_get(call)
     end
 
-    def post(call, params)
+    def post(call, params={})
       parse_response @http.request_post(call, to_query(params))
     end
 

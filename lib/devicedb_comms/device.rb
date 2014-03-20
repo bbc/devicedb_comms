@@ -3,21 +3,21 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Device < DeviceDBComms::Shared
 
-    #def start(job_id)
-    #  put("jobs/#{job_id}/start")
-    #end
-    #
-    #def end(job_id)
-    #  put("jobs/#{job_id}/end")
-    #end
-    #
-    #def error(job_id)
-    #  put("jobs/#{job_id}/error")
-    #end
-    #
-    #def update(job_id, params)
-    #  put("jobs/#{job_id}", params)
-    #end
+    def register(device_params)
+      post("/devices/register", device_params)
+    end
+
+    def poll(device_id, status=nil)
+      post("/devices/#{device_id}/poll" + ( "(/#{status}" if status.present? ))
+    end
+
+    def hive_connect(device_id, hive_id)
+      post("/hives/#{hive_id}/devices/#{device_id}/connect")
+    end
+
+    def hive_disconnect(device_id)
+      put("/hives/devices/#{device_id}/disconnect")
+    end
 
   end
 end
