@@ -16,15 +16,15 @@ module DeviceDBComms
     end
 
     def get(call)
-      parse_response @http.request_get(call)
+      parse_response @http.request_get(call + '.json')
     end
 
     def post(call, params={})
-      parse_response @http.request_post(call, to_query(params))
+      parse_response @http.request_post(call + '.json', to_query(params))
     end
 
     def put(call, params={})
-      parse_response @http.request_put(call, to_query(params))
+      parse_response @http.request_put(call + '.json', to_query(params))
     end
 
     def parse_response(response)
