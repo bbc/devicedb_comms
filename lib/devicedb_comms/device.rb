@@ -3,6 +3,10 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Device < DeviceDBComms::Shared
 
+    def find(device_id)
+      get("/devices/#{device_id}")
+    end
+
     def register(device_params)
       post("/devices/register", device_params)
     end
