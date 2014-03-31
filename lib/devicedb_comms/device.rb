@@ -12,7 +12,7 @@ module DeviceDBComms
     end
 
     def poll(device_id, status=nil)
-      post("/devices/#{device_id}/poll" + ( "(/#{status}" unless status.nil ))
+      post("/devices/#{device_id}/poll" + ( "(/#{status}" unless status.nil? ))
     end
 
     def hive_connect(device_id, hive_id)
