@@ -1,3 +1,5 @@
+require 'rails'
+
 module DeviceDBComms
   class Shared
 
@@ -34,9 +36,9 @@ module DeviceDBComms
     def to_query(params_hash)
       puts "&"*50
       puts "&&& params_hash: #{params_hash}"
-      puts "&&& params_hash_mapped: #{params_hash.map{ |k, v| "#{k}=#{v}" }.join('&')}"
+      puts "&&& params_hash_mapped: #{params_hash.to_query}"
       puts "&"*50
-      params_hash.map{ |k, v| "#{k}=#{v}" }.join('&')
+      params_hash.to_query
     end
 
   end
