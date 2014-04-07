@@ -3,8 +3,8 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Hive < DeviceDBComms::Shared
 
-    def register(device_params)
-      post("/hives/register", device_params)
+    def register(hive_name, hive_description, mac_address, ip_address)
+      post("/hives/register", { name: hive_name, description: hive_description, mac: mac_address, ip_address: ip_address })
     end
 
   end
