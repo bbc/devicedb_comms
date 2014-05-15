@@ -7,5 +7,9 @@ module DeviceDBComms
       post("/hives/register", { hive: { name: hive_name, description: hive_description, mac: mac_address, ip_address: ip_address }})
     end
 
+    def poll(hive_id)
+      post("/hives/#{hive_id}/poll")
+    end
+
   end
 end

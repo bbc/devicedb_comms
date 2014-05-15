@@ -23,5 +23,8 @@ module DeviceDBComms
       put("/hives/devices/#{device_id}/disconnect")
     end
 
+    def find_disconnected_by_type(type)
+      post("/devices/search", { device_type: type, hive_id: -1, status: 'idle' })
+    end
   end
 end
