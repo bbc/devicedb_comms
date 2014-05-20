@@ -18,15 +18,27 @@ module DeviceDBComms
     end
 
     def get(call)
-      parse_response @http.request_get(call + '.json')
+      begin
+        parse_response @http.request_get(call + '.json')
+      rescue Errno::ECONNREFUSED
+        { error: 'Failed to contact Device DB' }
+      end
     end
 
     def post(call, params={})
-      parse_response @http.request_post(call + '.json', to_query(params))
+      begin
+        parse_response @http.request_post(call + '.json', to_query(params))
+      rescue Errno::ECONNREFUSED
+        { error: 'Failed to contact Device DB' }
+      end
     end
 
     def put(call, params={})
-      parse_response @http.request_put(call + '.json', to_query(params))
+      begin
+        parse_response @http.request_put(call + '.json', to_query(params))
+      rescue Errno::ECONNREFUSED
+        { error: 'Failed to contact Device DB' }
+      end
     end
 
     def parse_response(response)
