@@ -42,7 +42,6 @@ module DeviceDBComms
     end
 
     def parse_response(response)
-      puts response.body.inspect
       JSON.parse(response.body)
     end
 
