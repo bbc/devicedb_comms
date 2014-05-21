@@ -20,28 +20,29 @@ module DeviceDBComms
     def get(call)
       begin
         parse_response @http.request_get(call + '.json')
-      rescue Errno::ECONNREFUSED
-        { error: 'Failed to contact Device DB' }
+      rescue Exception => e
+        { 'error' => "GET failed: #{e.message}" }
       end
     end
 
     def post(call, params={})
       begin
         parse_response @http.request_post(call + '.json', to_query(params))
-      rescue Errno::ECONNREFUSED
-        { error: 'Failed to contact Device DB' }
+      rescue Exception => e
+        { 'error' => "POST failed: #{e.message}" }
       end
     end
 
     def put(call, params={})
       begin
         parse_response @http.request_put(call + '.json', to_query(params))
-      rescue Errno::ECONNREFUSED
-        { error: 'Failed to contact Device DB' }
+      rescue Exception => e
+        { 'error' => "PUT failed: #{e.message}" }
       end
     end
 
     def parse_response(response)
+      puts response.body.inspect
       JSON.parse(response.body)
     end
 
