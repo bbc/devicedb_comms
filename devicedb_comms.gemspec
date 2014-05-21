@@ -7,8 +7,8 @@ require "devicedb_comms/version"
 Gem::Specification.new do |s|
   s.name        = "devicedb_comms"
   s.version     = DeviceDBComms::VERSION
-  s.authors     = ["Matt Lafferty"]
-  s.email       = ["matt@exhib.it"]
+  s.authors     = ["Matt Lafferty", "Joe Haig"]
+  s.email       = ["matt@exhib.it", "joe.haig@bbc.co.uk"]
   s.homepage    = "http://exhib.it"
   s.summary     = "DeviceDB Comms Gem"
   s.description = "Communication helper gem for talking to Device Database"
