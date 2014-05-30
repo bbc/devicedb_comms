@@ -46,10 +46,6 @@ module DeviceDBComms
     end
 
     def to_query(params_hash)
-      puts "&"*50
-      puts "&&& params_hash: #{params_hash}"
-      puts "&&& params_hash_mapped: #{params_hash.to_query}"
-      puts "&"*50
       params_hash.to_query
     end
 
