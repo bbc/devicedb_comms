@@ -3,6 +3,11 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Device < DeviceDBComms::Shared
 
+    def initialize(url, pem_path=nil)
+      @applications = {}
+      super(url, pem_path)
+    end
+
     def find(device_id)
       get("/devices/#{device_id}")
     end
@@ -12,7 +17,24 @@ module DeviceDBComms
     end
 
     def poll(device_id, status=nil)
-      post("/devices/#{device_id}/poll" + ( "/#{status}" unless status.nil? ).to_s)
+      params = {}
+      if @applications[device_id]
+        params['application'] = @applications[device_id]
+      end
+      post("/devices/#{device_id}/poll" + ( "/#{status}" unless status.nil? ).to_s, params)
+    end
+
+    def set_application(device_id, name=nil)
+      @applications[device_id] = name
+      poll(device_id)
+    end
+
+    def clear_application(device_id)
+      set_application(device_id, nil)
+    end
+
+    def get_application(device_id)
+      find(device_id)['application']
     end
 
     def hive_connect(device_id, hive_id)
@@ -30,5 +52,6 @@ module DeviceDBComms
     def find_disconnected_by_type(type)
       post("/devices/search", { device_type: type, hive_id: -1, status: 'idle' })
     end
+
   end
 end
