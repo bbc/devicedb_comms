@@ -10,7 +10,7 @@ module DeviceDBComms
 
       if pem_path
         pem = File.read(pem_path)
-        @http.use_ssl = true
+        @http.use_ssl = true if uri.scheme == 'https'
         @http.cert = OpenSSL::X509::Certificate.new(pem)
         @http.key = OpenSSL::PKey::RSA.new(pem)
         @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
