@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    devicedb_comms (0.0.4)
+    devicedb_comms (0.0.14)
 
 GEM
   remote: https://rubygems.org/
