@@ -1,3 +1,3 @@
 module DeviceDBComms
-  VERSION = "0.0.14-prelease"
+  VERSION = "0.0.14"
 end
