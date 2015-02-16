@@ -47,8 +47,10 @@ module DeviceDBComms
 
     def action(device_id, type, body, tries = 1)
       rtn = { 'error' => 'No tries' }
+      n = 0
       while n < tries && rtn['error'].present?
         rtn = post("/devices/#{device_id}/new_action", { action_type: type, action_body: body })
+        n += 1
       end
       rtn
     end
