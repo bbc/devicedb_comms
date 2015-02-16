@@ -45,12 +45,18 @@ module DeviceDBComms
       put("/hives/devices/#{device_id}/disconnect")
     end
 
-    def action(device_id, type, body)
-      post("/devices/#{device_id}/new_action", { action_type: type, action_body: body })
+    def action(device_id, type, body, tries = 1)
+      rtn = { 'error' => 'No tries' }
+      while n < tries && rtn['error'].present?
+        rtn = post("/devices/#{device_id}/new_action", { action_type: type, action_body: body })
+      end
+      rtn
     end
 
     def find_disconnected_by_type(type)
-      post("/devices/search", { device_type: type, hive_id: -1, status: 'idle' })
+      {
+        'devices' => []
+      }.merge(post("/devices/search", { device_type: type, hive_id: -1, status: 'idle' }))
     end
 
   end
