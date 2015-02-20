@@ -1,5 +1,6 @@
 require 'active_support/core_ext/object/to_query'
 require 'json'
+require 'net/http'
 
 module DeviceDBComms
   class Shared
