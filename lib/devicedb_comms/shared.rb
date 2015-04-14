@@ -16,6 +16,8 @@ module DeviceDBComms
         @http.cert = OpenSSL::X509::Certificate.new(pem)
         @http.key = OpenSSL::PKey::RSA.new(pem)
         @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        # Temporary 'fix' to work around network issues
+        @http.open_timeout = 10
       end
     end
 
