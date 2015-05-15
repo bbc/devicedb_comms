@@ -4,7 +4,7 @@ module DeviceDBComms
   class Queue < DeviceDBComms::Shared
 
     def find_by_name(name)
-      get("/queues/by_name/#{name}")
+      get("/queues/by_name/#{name.gsub(/\./, '%2E' )}")
     end
 
     def find(id)

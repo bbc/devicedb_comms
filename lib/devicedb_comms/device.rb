@@ -16,6 +16,10 @@ module DeviceDBComms
       post("/devices/register", device_params)
     end
 
+    def edit(device_id, device_params)
+      put("/devices/#{device_id}", device: device_params)
+    end
+
     def poll(device_id, status=nil)
       params = {}
       if @applications[device_id]
