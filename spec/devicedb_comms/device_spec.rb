@@ -1,8 +1,13 @@
 require 'spec_helper'
+require 'devicedb_comms'
 require 'devicedb_comms/device'
 
+DeviceDBComms.configure do |config|
+  config.url = 'http://devicedb.test'
+end
+
 describe DeviceDBComms::Device do
-  let(:devicedb) { DeviceDBComms::Device.new('http://devicedb.test') }
+  let(:devicedb) { DeviceDBComms::Device.new }
 
   describe '#find_disconnected_by_type' do
     it 'returns an empty array with network error' do

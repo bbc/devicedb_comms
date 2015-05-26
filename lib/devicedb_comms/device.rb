@@ -3,9 +3,9 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Device < DeviceDBComms::Shared
 
-    def initialize(url, pem_path=nil)
+    def initialize
       @applications = {}
-      super(url, pem_path)
+      super
     end
 
     def find(device_id)

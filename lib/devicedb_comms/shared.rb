@@ -5,17 +5,17 @@ require 'net/http'
 module DeviceDBComms
   class Shared
 
-    def initialize(url, pem_path=nil)
-      uri = URI.parse(url)
+    def initialize
+      uri = URI.parse(DeviceDBComms.configuration.url)
 
       @http = Net::HTTP.new(uri.host, uri.port)
 
-      if pem_path
-        pem = File.read(pem_path)
+      if DeviceDBComms.configuration.pem_file
+        pem = File.read(DeviceDBComms.configuration.pem_file)
         @http.use_ssl = true if uri.scheme == 'https'
         @http.cert = OpenSSL::X509::Certificate.new(pem)
         @http.key = OpenSSL::PKey::RSA.new(pem)
-        @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        @http.verify_mode = DeviceDBComms.configuration.ssl_verify_mode
       end
     end
 
