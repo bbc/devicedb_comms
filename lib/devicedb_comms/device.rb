@@ -3,9 +3,11 @@ require 'devicedb_comms/shared'
 module DeviceDBComms
   class Device < DeviceDBComms::Shared
 
-    def initialize
+    # Backward compatibility with version <= 0.0.14
+    # TODO Remove arguments
+    def initialize(url = nil, pem_path = nil)
       @applications = {}
-      super
+      super(url, pem_path)
     end
 
     def find(device_id)
