@@ -20,9 +20,7 @@ module DeviceDBComms
         @http.use_ssl = true if uri.scheme == 'https'
         @http.cert = OpenSSL::X509::Certificate.new(pem)
         @http.key = OpenSSL::PKey::RSA.new(pem)
-        # Backward compatibility with version <= 0.0.14
-        # TODO Remove VERIFY_NONE default
-        @http.verify_mode = DeviceDBComms.configuration.ssl_verify_mode || OpenSSL::SSL::VERIFY_NONE
+        @http.verify_mode = DeviceDBComms.configuration.ssl_verify_mode
       end
     end
 
