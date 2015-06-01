@@ -11,7 +11,9 @@ module DeviceDBComms
     #attr_accessor :configuration
 
     def configure
-      self.configuration = Configuration.new
+      # TODO Possibly change to this when configuration method removed
+      #self.configuration = Configuration.new
+      @configuration = Configuration.new
       yield(configuration)
     end
 
