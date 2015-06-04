@@ -40,7 +40,7 @@ module DeviceDBComms
     end
 
     def get_application(device_id)
-      find(device_id)['application']
+      get("/devices/#{device_id}/application")['application']
     end
 
     def hive_connect(device_id, hive_id)
