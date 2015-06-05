@@ -9,6 +9,16 @@ end
 describe DeviceDBComms::Device do
   let(:devicedb) { DeviceDBComms::Device.new }
 
+  describe '#get_application' do
+    it 'returns the application of a device' do
+      stub_request(:get, 'http://devicedb.test/devices/1/application.json').to_return(
+        status: 200,
+        body: '{"application":"Test application"}'
+      )
+      expect(devicedb.get_application(1)).to eq 'Test application'
+    end
+  end
+
   describe '#find_disconnected_by_type' do
     it 'returns an empty array with network error' do
       stub_request(:post, 'http://devicedb.test/devices/search.json').to_timeout     
