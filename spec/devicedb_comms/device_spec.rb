@@ -2,11 +2,13 @@ require 'spec_helper'
 require 'devicedb_comms'
 require 'devicedb_comms/device'
 
-DeviceDBComms.configure do |config|
-  config.url = 'http://devicedb.test'
-end
-
 describe DeviceDBComms::Device do
+  before(:each) do
+    DeviceDBComms.configure do |config|
+      config.url = 'http://devicedb.test'
+    end
+  end
+
   let(:devicedb) { DeviceDBComms::Device.new }
 
   describe '#get_application' do
