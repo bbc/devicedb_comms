@@ -58,3 +58,8 @@ device.hive_disconnect( device_id )
 # Send an action to a device
 device_action( device_id, action_type, action_body, number_of_retries )
 ```
+## License
+
+DeviceDB Comms is available to everyone under the terms of the MIT open source licence. Take a look at the LICENSE file in the code.
+
+Copyright (c) 2015 BBC
